@@ -11,11 +11,11 @@ export default (reducer,  actions, initialState) => {
             boundActions[key] = actions[key](dispatch)
         }
 
-        return <Context.Provider value= {{
+        return <Context.Provider value={{
             state: state,
             ...boundActions
         }}>
-
+            {children}
         </Context.Provider>
     }
 

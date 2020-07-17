@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import  IndexScreen from './src/screens/indexScreen'
 import {Provider} from './src/context/useReducerContext'
 
-const navigatior = createStackNavigator({
+const navigator = createStackNavigator({
   Index: IndexScreen,
 
 }, {
@@ -16,7 +16,7 @@ const navigatior = createStackNavigator({
 })
 
 
-const App =  createAppContainer(navigatior)
+const App =  createAppContainer(navigator)
 
 
 export default () => {
