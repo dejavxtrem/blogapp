@@ -5,7 +5,7 @@ import {Context} from '../context/useReducerContext'
 import { Feather } from '@expo/vector-icons';
 
 
-const IndexScreen = () => {
+const IndexScreen = ({navigation}) => {
 
 const  {state, addBlogPost, deleteBlogPost } = useContext(Context)
     return (
@@ -19,13 +19,17 @@ const  {state, addBlogPost, deleteBlogPost } = useContext(Context)
             keyExtractor={(blogPost) => blogPost.title}
             renderItem={({item}) => {
             return (
-                <View style={styles.row}>
+                <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+                    <View style={styles.row}>
                     <Text style={styles.title}>{item.title} -{item.id}</Text>
                     <TouchableOpacity>
                     <Feather name='trash' style={styles.icon} onPress={() => deleteBlogPost(item.id)}/>
                     </TouchableOpacity>
                     
-                </View>
+                    </View>
+
+                </TouchableOpacity>
+
             )
             }}
             />
@@ -33,6 +37,16 @@ const  {state, addBlogPost, deleteBlogPost } = useContext(Context)
         </View>
     )
 }
+
+//function to add to the header values of a screen component
+IndexScreen.navigationOptions = ({navigation}) => {
+    return {
+        headerRight: <TouchableOpacity onPress={() => navigation.navigate('Create') }> 
+                    <Feather name="plus" size={30} color="black" />
+                    </TouchableOpacity>
+    }
+}
+
 
 
 const styles = StyleSheet.create ({

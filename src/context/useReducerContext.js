@@ -53,4 +53,4 @@ const deleteBlogPost = (dispatch) => {
 
 // export default BlogContext
 
-export const {Context, Provider} = createDataContext(blogReducer, { addBlogPost, deleteBlogPost}, [])
+export const { Context, Provider} = createDataContext(blogReducer, { addBlogPost, deleteBlogPost}, [])
