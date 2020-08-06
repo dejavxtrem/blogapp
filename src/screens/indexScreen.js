@@ -13,7 +13,6 @@ const  {state, addBlogPost, deleteBlogPost } = useContext(Context)
             <Text>
                 Index screen
             </Text>
-            <Button title="Add Post" onPress= {() => addBlogPost()}/>
             <FlatList
             data={state}
             keyExtractor={(blogPost) => blogPost.title}

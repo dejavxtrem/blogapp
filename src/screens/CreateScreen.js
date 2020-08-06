@@ -1,28 +1,25 @@
 import React , {useContext} from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import BlogPostForm from './../components/BlogPostForm'
 import  { Context } from '../context/useReducerContext'
 
 const CreateScreen = ({navigation}) => {
-   
 
+   const {addBlogPost} = useContext(Context)
 
-
-    return (
-        <View>
-            <Text>
-                create
-            </Text>
-        </View>
-    )
+    return <BlogPostForm
+            onSubmit={
+            (title, content) => {
+                addBlogPost(title, content, () => {navigation.navigate('Index')})
+            }
+            }/>
 }
 
 
 
 const styles = StyleSheet.create({
-
+    
 })
-
-
 
 
 
