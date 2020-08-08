@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-native';
 //import BlogContext from '../context/BlogContext'
 import {Context} from '../context/useReducerContext'
@@ -7,12 +7,25 @@ import { Feather } from '@expo/vector-icons';
 
 const IndexScreen = ({navigation}) => {
 
-const  {state, addBlogPost, deleteBlogPost } = useContext(Context)
+const  {state, addBlogPost, deleteBlogPost, getBlogPost } = useContext(Context)
+
+//use effect to make call  to outside api
+ useEffect(() => {
+        getBlogPost()
+
+        const listener = navigation.addListener('didFocus', () => {
+        getBlogPost()
+        })
+        return () => {
+            listener.remove()
+        }
+ }, [])
+
+
+
+
     return (
         <View>
-            <Text>
-                Index screen
-            </Text>
             <FlatList
             data={state}
             keyExtractor={(blogPost) => blogPost.title}
